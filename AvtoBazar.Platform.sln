@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C8FFCDFE-42C9-4978-B01B-E6B84A25DEFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoBazar.WebApi", "src\AvtoBazar.WebApi\AvtoBazar.WebApi.csproj", "{4A89A451-3929-4997-B297-F646F2E76FCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoBazar.Domain", "src\AvtoBazar.Domain\AvtoBazar.Domain.csproj", "{80063273-4304-43E3-929B-60C3422F7C6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoBazar.DataAccess", "src\AvtoBazar.DataAccess\AvtoBazar.DataAccess.csproj", "{F4CEAC43-2E19-4B4D-8C06-E4BD0BAF6730}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoBazar.Service", "src\AvtoBazar.Service\AvtoBazar.Service.csproj", "{21AFE834-097F-4343-A406-EFCDFAE1C50C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{4629E337-1FEF-4AAF-A3D1-CF99179E631F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvtoBazar.UnitTest", "test\AvtoBazar.UnitTest\AvtoBazar.UnitTest.csproj", "{771551E3-8989-4FCD-9796-51EC888AD561}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A89A451-3929-4997-B297-F646F2E76FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A89A451-3929-4997-B297-F646F2E76FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A89A451-3929-4997-B297-F646F2E76FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A89A451-3929-4997-B297-F646F2E76FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80063273-4304-43E3-929B-60C3422F7C6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80063273-4304-43E3-929B-60C3422F7C6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80063273-4304-43E3-929B-60C3422F7C6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80063273-4304-43E3-929B-60C3422F7C6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4CEAC43-2E19-4B4D-8C06-E4BD0BAF6730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4CEAC43-2E19-4B4D-8C06-E4BD0BAF6730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4CEAC43-2E19-4B4D-8C06-E4BD0BAF6730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4CEAC43-2E19-4B4D-8C06-E4BD0BAF6730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21AFE834-097F-4343-A406-EFCDFAE1C50C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21AFE834-097F-4343-A406-EFCDFAE1C50C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21AFE834-097F-4343-A406-EFCDFAE1C50C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21AFE834-097F-4343-A406-EFCDFAE1C50C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{771551E3-8989-4FCD-9796-51EC888AD561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{771551E3-8989-4FCD-9796-51EC888AD561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{771551E3-8989-4FCD-9796-51EC888AD561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{771551E3-8989-4FCD-9796-51EC888AD561}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A89A451-3929-4997-B297-F646F2E76FCB} = {C8FFCDFE-42C9-4978-B01B-E6B84A25DEFE}
+		{80063273-4304-43E3-929B-60C3422F7C6A} = {C8FFCDFE-42C9-4978-B01B-E6B84A25DEFE}
+		{F4CEAC43-2E19-4B4D-8C06-E4BD0BAF6730} = {C8FFCDFE-42C9-4978-B01B-E6B84A25DEFE}
+		{21AFE834-097F-4343-A406-EFCDFAE1C50C} = {C8FFCDFE-42C9-4978-B01B-E6B84A25DEFE}
+		{771551E3-8989-4FCD-9796-51EC888AD561} = {4629E337-1FEF-4AAF-A3D1-CF99179E631F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0A8D987-08EA-47C4-BFAD-B050733EAF44}
+	EndGlobalSection
+EndGlobal
