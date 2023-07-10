@@ -18,6 +18,9 @@ public class UserService : IUserService
     {
         this._userRepository = userRepository;          
     }
+
+    public async Task<long> CountAsync() => await _userRepository.CountAsync();
+
     public async Task<bool> CreateAsync(UserCreateDto userCreateDto)
     {
         User us = new User()

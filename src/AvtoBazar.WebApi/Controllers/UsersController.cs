@@ -21,4 +21,10 @@ public class UsersController : ControllerBase
     [HttpDelete]
     public async Task<IActionResult> DeleteAsync(long id)
         =>Ok(await _userService.DeleteAsync(id));
+
+
+    [HttpGet]
+    public async Task<IActionResult> CountAsync()
+    => Ok(await _userService.CountAsync());
+
 }

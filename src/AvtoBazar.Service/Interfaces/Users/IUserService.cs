@@ -9,6 +9,8 @@ public interface IUserService
     
     
     public Task<bool> DeleteAsync(long id);
-    
-    
+
+
+    public Task<long> CountAsync();
+
 }

@@ -9,9 +9,23 @@ namespace AvtoBazar.DataAccess.Repositories.Users;
 
 public class UserRepository : BaseRepository, IUserRepository
 {
-    public Task<long> CountAsync()
+    public async Task<long> CountAsync()
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"select count(*) from users";
+            var result = await _connection.QuerySingleAsync<long>(query);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<int> CreateAsync(User entity)
