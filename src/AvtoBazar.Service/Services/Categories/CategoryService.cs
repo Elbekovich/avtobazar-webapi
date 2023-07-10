@@ -1,14 +1,10 @@
-﻿using AvtoBazar.DataAccess.Interfaces;
-using AvtoBazar.DataAccess.Interfaces.Categories;
-using AvtoBazar.DataAccess.Repositories.Categories;
+﻿using AvtoBazar.DataAccess.Interfaces.Categories;
 using AvtoBazar.Domain.Entities.Categories;
 using AvtoBazar.Domain.Exceptions.Categories;
 using AvtoBazar.Service.Common.Helpers;
 using AvtoBazar.Service.Dtos.Categories;
 using AvtoBazar.Service.Interfaces.Categories;
 using AvtoBazar.Service.Interfaces.Common;
-using AvtoBazar.Service.Services.Common;
-using System.Runtime.InteropServices;
 
 namespace AvtoBazar.Service.Services.Categories;
 
