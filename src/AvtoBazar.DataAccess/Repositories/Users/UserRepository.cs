@@ -1,6 +1,7 @@
 ﻿using AvtoBazar.DataAccess.Interfaces.Users;
 using AvtoBazar.DataAccess.Utils;
 using AvtoBazar.DataAccess.ViewModels.Users;
+using AvtoBazar.Domain.Entities.Categories;
 using AvtoBazar.Domain.Entities.Users;
 using Dapper;
 
@@ -40,9 +41,17 @@ public class UserRepository : BaseRepository, IUserRepository
         finally { await _connection.CloseAsync(); }
     }
 
-    public Task<int> DeleteAsync(long id)
+    public async Task<int> DeleteAsync(long id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "DELETE FROM users WHERE id=@Id";
+            var result = await _connection.ExecuteAsync(query, new { Id = id });
+            return result;
+        }
+        catch { return 0; }
+        finally { await _connection.CloseAsync(); }
     }
 
     public Task<IList<User>> GetAllAsync(PaginationParams @params)
@@ -50,9 +59,20 @@ public class UserRepository : BaseRepository, IUserRepository
         throw new NotImplementedException();
     }
 
-    public Task<User?> GetByIdAsync(long id)
+    public async Task<User?> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"SELECT * FROM users where id=@Id";
+            var result = await _connection.QuerySingleAsync<User>(query, new { Id = id });
+            return result;
+        }
+        catch
+        {
+            return null;
+        }
+        finally { await _connection.CloseAsync(); }
     }
 
     public Task<UserViewModel> GetUserAsync(long id)

@@ -17,4 +17,8 @@ public class UsersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromForm] UserCreateDto userCreateDto)
         => Ok(await _userService.CreateAsync(userCreateDto));
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteAsync(long id)
+        =>Ok(await _userService.DeleteAsync(id));
 }

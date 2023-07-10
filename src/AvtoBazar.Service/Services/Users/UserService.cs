@@ -1,5 +1,8 @@
 ﻿using AvtoBazar.DataAccess.Interfaces.Users;
+using AvtoBazar.Domain.Entities.Categories;
 using AvtoBazar.Domain.Entities.Users;
+using AvtoBazar.Domain.Exceptions.Categories;
+using AvtoBazar.Domain.Exceptions.Users;
 using AvtoBazar.Service.Common.Helpers;
 using AvtoBazar.Service.Dtos.Users;
 using AvtoBazar.Service.Interfaces.Users;
@@ -36,5 +39,13 @@ public class UserService : IUserService
         };
         var res = await _userRepository.CreateAsync(us);
         return res > 0;
+    }
+
+    public  async Task<bool> DeleteAsync(long id)
+    {
+        var user = await _userRepository.GetByIdAsync(id);
+        if (user is null) throw new UsersNotFoundException();
+        var result = await _userRepository.DeleteAsync(id);
+        return result > 0;
     }
 }

@@ -6,6 +6,9 @@ namespace AvtoBazar.Service.Interfaces.Users;
 public interface IUserService
 {
     public Task<bool> CreateAsync(UserCreateDto userCreateDto);
-    //public Task<bool> DeleteAsync(long userId);
-    //public Task<long> CountAsync();
+    
+    
+    public Task<bool> DeleteAsync(long id);
+    
+    
 }
