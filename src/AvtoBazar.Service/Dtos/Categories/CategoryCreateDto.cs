@@ -11,6 +11,4 @@ public class CategoryCreateDto
 
     public IFormFile Image { get; set; } = default!;
 
-    //public string ImagePath { get; set; } = string.Empty;
-
 }

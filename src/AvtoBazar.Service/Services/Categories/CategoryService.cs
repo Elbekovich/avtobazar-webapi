@@ -1,10 +1,13 @@
-﻿using AvtoBazar.DataAccess.Interfaces.Categories;
+﻿using AvtoBazar.DataAccess.Interfaces;
+using AvtoBazar.DataAccess.Interfaces.Categories;
+using AvtoBazar.DataAccess.Utils;
 using AvtoBazar.Domain.Entities.Categories;
 using AvtoBazar.Domain.Exceptions.Categories;
 using AvtoBazar.Service.Common.Helpers;
 using AvtoBazar.Service.Dtos.Categories;
 using AvtoBazar.Service.Interfaces.Categories;
 using AvtoBazar.Service.Interfaces.Common;
+using AvtoBazar.Service.Services.Common;
 
 namespace AvtoBazar.Service.Services.Categories;
 
@@ -38,9 +41,53 @@ public class CategoryService : ICategoryService
     {
         var category = await _categoryRepository.GetByIdAsync(categoryId);
         if (category is null) throw new CategoryNotFoundException();
+
         var result = await _fileservice.DeleteImageAsync(category.ImagePath);
         if (result == false) throw new ImageNotFoundException();
+
         var dbResult = await _categoryRepository.DeleteAsync(categoryId);
+        return dbResult > 0;
+    }
+
+    public async Task<IList<Category>> GetAllAsync(PaginationParams @params)
+    {
+        var categories = await _categoryRepository.GetAllAsync(@params);
+        return categories;
+    }
+
+    public async Task<Category> GetByIdAsync(long categoryId)
+    {
+        var category = await _categoryRepository.GetByIdAsync(categoryId);
+        if (category is null) throw new CategoryNotFoundException();
+        else return category;
+    }
+
+    public async Task<bool> UpdateAsync(long categoryId, CategoryUpdateDto dto)
+    {
+        var category = await _categoryRepository.GetByIdAsync(categoryId);
+        if (category is null) throw new CategoryNotFoundException();
+
+        // parse new items to category
+        category.Name = dto.Name;
+        category.Description = dto.Description;
+
+        if (dto.Image is not null)
+        {
+            // delete old image
+            var deleteResult = await _fileservice.DeleteImageAsync(category.ImagePath);
+            if (deleteResult is false) throw new ImageNotFoundException();
+
+            // upload new image
+            string newImagePath = await _fileservice.UploadImageAsync(dto.Image);
+
+            // parse new path to category
+            category.ImagePath = newImagePath;
+        }
+        // else category old image have to save
+
+        category.UpdatedAt = TimeHelper.GetDateTime();
+
+        var dbResult = await _categoryRepository.UpdateAsync(categoryId, category);
         return dbResult > 0;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AvtoBazar.DataAccess.Interfaces.Users;
 using AvtoBazar.DataAccess.Utils;
 using AvtoBazar.DataAccess.ViewModels.Users;
-using AvtoBazar.Domain.Entities.Categories;
 using AvtoBazar.Domain.Entities.Users;
 using Dapper;
 
@@ -68,9 +67,24 @@ public class UserRepository : BaseRepository, IUserRepository
         finally { await _connection.CloseAsync(); }
     }
 
-    public Task<IList<User>> GetAllAsync(PaginationParams @params)
+    public async Task<IList<User>> GetAllAsync(PaginationParams @params)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"SELECT * FROM public.users ORDER BY id desc offset {@params.SkipCount} limit {@params.PageSize}";
+            var result = (await _connection.QueryAsync<User>(query)).ToList();
+            return result;
+        }
+        catch
+        {
+            return new List<User>();
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<User?> GetByIdAsync(long id)
@@ -89,7 +103,7 @@ public class UserRepository : BaseRepository, IUserRepository
         finally { await _connection.CloseAsync(); }
     }
 
-    public Task<UserViewModel> GetUserAsync(long id)
+    public async Task<UserViewModel> GetUserAsync(long id)
     {
         throw new NotImplementedException();
     }
@@ -99,9 +113,44 @@ public class UserRepository : BaseRepository, IUserRepository
         throw new NotImplementedException();
     }
 
-    public Task<int> UpdateAsync(long id, User entity)
+    public async Task<int> UpdateAsync(long id, User entity)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+
+            string query = "UPDATE public.users SET " +
+                "first_name = @FirstName, " +
+                "last_name = @LastName, " +
+                "phone_number = @PhoneNumber, " +
+                "phone_number_confirmed = @PhoneNumberConfirmed, " +
+                "passport_seria_number = @PassportSerialNumber, " +
+                "is_male = @IsMale, " +
+                "birth_date = @BirthDate, " +
+                "country = @Country, " +
+                "region = @Region, " +
+                "password_hash = @PasswordHash, " +
+                "salt = @Salt, " +
+                "created_at = @CreatedAt, " +
+                "updated_at = @UpdatedAt, " +
+                "role = @Role " +
+                "WHERE id = @Id";
+
+            entity.Id = id; // Set the ID of the entity to be updated
+
+            var result = await _connection.ExecuteAsync(query, entity);
+
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 }
     

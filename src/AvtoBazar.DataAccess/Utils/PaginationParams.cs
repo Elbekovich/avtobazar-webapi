@@ -1,4 +1,6 @@
-﻿namespace AvtoBazar.DataAccess.Utils;
+﻿using System.Drawing;
+
+namespace AvtoBazar.DataAccess.Utils;
 
 public class PaginationParams
 {
@@ -6,6 +8,11 @@ public class PaginationParams
 
     public int PageSize { get; set; }
 
+    public PaginationParams(int pageNumber, int pageSize)
+    {
+        PageNumber = pageNumber;
+        PageSize = pageSize;
+    }
     public int SkipCount
     {
         get
